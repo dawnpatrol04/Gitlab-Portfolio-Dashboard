@@ -1,8 +1,8 @@
 /* stylelint-disable declaration-no-important, font-weight-notation, selector-no-qualifying-type, property-disallowed-list, scss/selector-no-redundant-nesting-selector */
 
-@import "../node_modules/@coreui/coreui/scss/functions";
-@import "../node_modules/@coreui/coreui/scss/variables";
-@import "../node_modules/@coreui/coreui/scss/mixins";
+@import "../../../../node_modules/@coreui/coreui/scss/functions";
+@import "../../../../node_modules/@coreui/coreui/scss/variables";
+@import "../../../../node_modules/@coreui/coreui/scss/mixins";
 .example {
     &:not(:first-child) {
         margin-top: 1.5rem;

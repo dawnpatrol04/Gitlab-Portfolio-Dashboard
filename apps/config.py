@@ -18,8 +18,11 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False 
 
     # Assets Management
-    ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')    
-    
+    ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
+
+    # API URL
+    API_URL = os.getenv('API_URL', 'http://127.0.0.1:8000')
+
 class ProductionConfig(Config):
     DEBUG = False
 
