@@ -84,3 +84,34 @@ def kpi_card_users_data():
 
     # Return the data as-is to the frontend
     return jsonify(response.json()["data"])
+
+
+# Value Dashboard Route
+@blueprint.route('/dashboard-value', methods=['GET'])
+def value_dashboard():
+    API_URL = current_app.config['API_URL']
+    def fetch_data(endpoint, key=None):
+        response = requests.get(f'{API_URL}/{endpoint}')
+        data = response.json()
+        return data if key is None else data[key]
+    
+    user_count = fetch_data('users/count/', 'user_count')
+    project_count = fetch_data('projects/count/', 'project_count')
+    pipeline_count = fetch_data('pipelines/count/', 'pipeline_count')
+    commit_count = fetch_data('commits/count/', 'commit_count')
+    pipeline_percentages = fetch_data('pipelines/by-source-percentage/', None)
+    savings_data = fetch_data('value-detail/?start_date=2023-01-01', None)
+        # Compute the list of months from the savings_data
+    months = set()
+    for process_data in savings_data.values():
+        months.update(process_data.keys())
+    months = sorted(list(months))
+    # You can add any necessary logic here
+    return render_template('home/dashboard-value.html', segment='dashboard-value', 
+                           user_count=user_count, 
+                           project_count=project_count, 
+                           pipeline_count=pipeline_count, 
+                           commit_count=commit_count, 
+                           pipeline_percentages=pipeline_percentages,
+                           savings=savings_data, months=months,
+                           API_URL=API_URL)
