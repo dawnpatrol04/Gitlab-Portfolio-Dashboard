@@ -1,236 +1,197 @@
 {% extends "layouts/base.html" %}
-
 {% block title %} Value Dashboard {% endblock %} 
-
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
-    
-    <link href="/static/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
-
+<link href="/static/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
 {% endblock stylesheets %}
-
 {% block content %}
-
-  <div class="body flex-grow-1 px-3">
-    <div class="container-lg">
-      <div class="row">
-
-
-        <!-- /.col user_count -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="card mb-4 text-white bg-primary">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fs-4 fw-semibold">{{ user_count }} <span class="fs-6 fw-normal"> (-12.4%
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-                    </svg>)</span></div>
-                <div>Users</div>
-              </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="body flex-grow-1 px-3">
+<div class="container-lg">
+<div class="row">
+   <!-- /.col user_count -->
+   <div class="col-sm-6 col-lg-3">
+      <div class="card mb-4 text-white bg-primary">
+         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+               <div class="fs-4 fw-semibold">{{ user_count }}
+                  <span class="fs-6 fw-normal"> Users </span>
+               </div>
+            </div>
+            <div class="dropdown">
+               <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg class="icon">
-                    <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                     <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
                   </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
+               </button>
+               <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
             </div>
-            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-              <canvas class="chart" id="kpi-card-users-data" height="70"></canvas>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- /.col project_count -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="card mb-4 text-white bg-info">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fs-4 fw-semibold">{{ project_count }} <span class="fs-6 fw-normal">(40.9%
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-                    </svg>)</span></div>
-                <div>Projects</div>
-              </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-              <canvas class="chart" id="kpi-card-projects-data" height="70"></canvas>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- /.col pipeline_count-->
-        <div class="col-sm-6 col-lg-3">
-          <div class="card mb-4 text-white bg-warning">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fs-4 fw-semibold">{{ pipeline_count }} <span class="fs-6 fw-normal">(84.7%
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-                    </svg>)</span></div>
-                <div>Pipelines</div>
-              </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3" style="height:70px;">
-              <canvas class="chart" id="kpi-card-pipelines-data" height="70"></canvas>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- /.col commit_count -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="card mb-4 text-white bg-danger">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fs-4 fw-semibold">{{commit_count}} <span class="fs-6 fw-normal">(-23.6%
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-                    </svg>)</span></div>
-                <div>Commits</div>
-              </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-              <canvas class="chart" id="kpi-card-commits-data" height="70"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-->
+         </div>
+         <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+            <canvas class="chart" id="kpi-card-users-data" height="70"></canvas>
+         </div>
       </div>
-
-      <!-- /.row CICD Pipeline Detail -->
-      <div class="card mb-4">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <h4 class="card-title mb-0">CICD Pipeline Detail</h4>
-                    <div class="small text-medium-emphasis">Pipline Types</div>
-                </div>
-                <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
-                    <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
-                        <input class="btn-check" id="option1" type="radio" name="options" autocomplete="off">
-                        <label class="btn btn-outline-secondary"> Day</label>
-                        <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
-                        <label class="btn btn-outline-secondary active"> Month</label>
-                        <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
-                        <label class="btn btn-outline-secondary"> Year</label>
-                    </div>
-                    <button class="btn btn-primary" type="button">
-                        <svg class="icon">
-                            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-cloud-download"></use>
-                        </svg>
-                    </button>
-                </div>
+   </div>
+   <!-- /.col project_count -->
+   <div class="col-sm-6 col-lg-3">
+      <div class="card mb-4 text-white bg-info">
+         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+               <div class="fs-4 fw-semibold">
+                  {{ project_count }} 
+                  <span class="fs-6 fw-normal"> Projects</span>
+               </div>
             </div>
-            <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
-                <canvas class="chart" id="pipeline-detail-chart" height="30"></canvas>
+            <div class="dropdown">
+               <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg class="icon">
+                     <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                  </svg>
+               </button>
+               <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
             </div>
-        </div>
-        <div class="card-footer">
-          <div class="row row-cols-1 row-cols-md-5 text-center">
-              {% set colors = ['var(--cui-info)', 'var(--cui-success)', 'var(--cui-danger)'] %} <!-- Fetch the CSS variables -->
-              {% for source, percentage in pipeline_percentages.items() %}
-              <div class="col mb-sm-2 mb-0">
-                  <div class="text-medium-emphasis">{{ source }}</div>
-                  <div class="fw-semibold">{{ (percentage|float)|round(1) }}% Pipelines </div>
-                  <div class="progress progress-thin mt-2">
-                      <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%; background-color: {{ colors[loop.index0 % colors|length] }}" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-              </div>
-              {% endfor %}
-            </div></div></div>
-      
-
-
-
-
-            <div class="body flex-grow-1 px-3">
-              <div class="card">
-                  <div class="card-header">
-                      Value Detail
-                  </div>
-                  <div class="card-body">
-
-
-
-                    
-                    <table class="table">
-                      <thead>
-                          <tr>
-                              <th>Processes</th>
-                              {% for month in months %}
-                                  <th>{{ month }}</th>
-                              {% endfor %}
-                          </tr>
-                      </thead>
-                      <tbody>
-                          {% for process, data in savings.items() %}
-                              <tr>
-                                  <td>{{ process }}</td>
-                                  {% for month in months %}
-                                      {% if month in data %}
-                                          <td>{{ data[month]['hours_saved']|round(2) }}h/${{ data[month]['cost_saved']|round(2) }}</td>
-                                      {% else %}
-                                          <td>-</td>
-                                      {% endif %}
-                                  {% endfor %}
-                              </tr>
-                          {% endfor %}
-                      </tbody>
-                  </table>
-                  
-                  
-                  </div>
-              </div>
-              
-              <div class="container-lg">
- 
-
-
-
-    </div>
-  </div>
-
+         </div>
+         <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+            <canvas class="chart" id="kpi-card-projects-data" height="70"></canvas>
+         </div>
+      </div>
+   </div>
+   <!-- /.col pipeline_count-->
+   <div class="col-sm-6 col-lg-3">
+      <div class="card mb-4 text-white bg-warning">
+         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+               <div class="fs-4 fw-semibold">
+                  {{ pipeline_count }} 
+                  <span class="fs-6 fw-normal"> Pipelines</span>
+               </div>
+            </div>
+            <div class="dropdown">
+               <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg class="icon">
+                     <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                  </svg>
+               </button>
+               <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+            </div>
+         </div>
+         <div class="c-chart-wrapper mt-3" style="height:70px;">
+            <canvas class="chart" id="kpi-card-pipelines-data" height="70"></canvas>
+         </div>
+      </div>
+   </div>
+   <!-- /.col commit_count -->
+   <div class="col-sm-6 col-lg-3">
+      <div class="card mb-4 text-white bg-danger">
+         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+               <div class="fs-4 fw-semibold">
+                  {{commit_count}} 
+                  <span class="fs-6 fw-normal"> Commits</span>
+               </div>
+            </div>
+            <div class="dropdown">
+               <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg class="icon">
+                     <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                  </svg>
+               </button>
+               <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+            </div>
+         </div>
+         <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+            <canvas class="chart" id="kpi-card-commits-data" height="70"></canvas>
+         </div>
+      </div>
+   </div>
+   <!-- /.col-->
+</div>
+<!-- /.row CICD Pipeline Detail -->
+<div class="card mb-4">
+   <div class="card-body">
+      <div class="d-flex justify-content-between">
+         <div>
+            <h4 class="card-title mb-0">CICD Pipeline Detail</h4>
+            <div class="small text-medium-emphasis">Pipline Types</div>
+         </div>
+         <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
+            <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
+               <input class="btn-check" id="option1" type="radio" name="options" autocomplete="off">
+               <label class="btn btn-outline-secondary"> Day</label>
+               <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
+               <label class="btn btn-outline-secondary active"> Month</label>
+               <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
+               <label class="btn btn-outline-secondary"> Year</label>
+            </div>
+            <button class="btn btn-primary" type="button">
+               <svg class="icon">
+                  <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-cloud-download"></use>
+               </svg>
+            </button>
+         </div>
+      </div>
+      <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
+         <canvas class="chart" id="pipeline-detail-chart" height="30"></canvas>
+      </div>
+   </div>
+   <div class="card-footer">
+      <div class="row row-cols-1 row-cols-md-5 text-center">
+         {% set colors = ['var(--cui-info)', 'var(--cui-success)', 'var(--cui-danger)'] %} <!-- Fetch the CSS variables -->
+         {% for source, percentage in pipeline_percentages.items() %}
+         <div class="col mb-sm-2 mb-0">
+            <div class="text-medium-emphasis">{{ source }}</div>
+            <div class="fw-semibold">{{ (percentage|float)|round(1) }}% Pipelines </div>
+            <div class="progress progress-thin mt-2">
+               <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%; background-color: {{ colors[loop.index0 % colors|length] }}" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+</div>
+<div class="body flex-grow-1 px-3">
+   <div class="card">
+      <div class="card-header">
+         Value Detail
+      </div>
+      <div class="card-body">
+         <table class="table">
+            <thead>
+               <tr>
+                  <th>Processes</th>
+                  {% for month in months %}
+                  <th>{{ month }}</th>
+                  {% endfor %}
+               </tr>
+            </thead>
+            <tbody>
+               {% for process, data in savings.items() %}
+               <tr>
+                  <td>{{ process }}</td>
+                  {% for month in months %}
+                  {% if month in data %}
+                  <td>{{ data[month]['hours_saved']|round(2) }}h/${{ data[month]['cost_saved']|round(2) }}</td>
+                  {% else %}
+                  <td>-</td>
+                  {% endif %}
+                  {% endfor %}
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <div class="container-lg">
+   </div>
+</div>
 {% endblock content %}
-
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-
-  <!-- Plugins and scripts required by this view-->
-  <script> var API_URL = "{{ API_URL }}"; </script>
-  <script src="/static/assets/vendors/chart.js/js/chart.min.js"></script>
-  <script src="/static/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-  <script src="/static/assets/vendors/@coreui/utils/js/coreui-utils.js"></script>
-  <script src="/static/assets/js/main.js"></script>
-  <script src="/static/assets/js/index.js"></script>
-  <script>
-  </script>
-
+<!-- Plugins and scripts required by this view-->
+<script> var API_URL = "{{ API_URL }}"; </script>
+<script src="/static/assets/vendors/chart.js/js/chart.min.js"></script>
+<script src="/static/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+<script src="/static/assets/vendors/@coreui/utils/js/coreui-utils.js"></script>
+<script src="/static/assets/js/main.js"></script>
+<script src="/static/assets/js/index.js"></script>
+<script></script>
 {% endblock javascripts %}
