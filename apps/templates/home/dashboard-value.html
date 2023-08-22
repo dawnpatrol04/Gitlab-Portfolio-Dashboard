@@ -148,10 +148,13 @@
       </div>
    </div>
 </div>
+
+
 <div class="body flex-grow-1 px-3">
+   <!-- Table for Hours Saved -->
    <div class="card">
       <div class="card-header">
-         Value Detail
+         Hours Saved Detail
       </div>
       <div class="card-body">
          <table class="table">
@@ -169,7 +172,7 @@
                   <td>{{ process }}</td>
                   {% for month in months %}
                   {% if month in data %}
-                  <td>{{ data[month]['hours_saved']|round(2) }}h/${{ data[month]['cost_saved']|round(2) }}</td>
+                  <td>{{ data[month]['hours_saved']|round(2) }}h</td>
                   {% else %}
                   <td>-</td>
                   {% endif %}
@@ -180,9 +183,46 @@
          </table>
       </div>
    </div>
+
+   <!-- Table for Cost Saved -->
+   <div class="card">
+      <div class="card-header">
+         Cost Saved Detail
+      </div>
+      <div class="card-body">
+         <table class="table">
+            <thead>
+               <tr>
+                  <th>Processes</th>
+                  {% for month in months %}
+                  <th>{{ month }}</th>
+                  {% endfor %}
+               </tr>
+            </thead>
+            <tbody>
+               {% for process, data in savings.items() %}
+               <tr>
+                  <td>{{ process }}</td>
+                  {% for month in months %}
+                  {% if month in data %}
+                  <td>${{ data[month]['cost_saved']|round(2) }}</td>
+                  {% else %}
+                  <td>-</td>
+                  {% endif %}
+                  {% endfor %}
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+   
    <div class="container-lg">
    </div>
 </div>
+
+
+
 {% endblock content %}
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
