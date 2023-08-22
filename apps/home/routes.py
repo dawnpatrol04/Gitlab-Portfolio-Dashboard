@@ -25,13 +25,14 @@ def index():
     pipeline_count = fetch_data('pipelines/count/', 'pipeline_count')
     commit_count = fetch_data('commits/count/', 'commit_count')
     pipeline_percentages = fetch_data('pipelines/by-source-percentage/', None)
-
+    projects_details = fetch_data('projects/details/', None)
     return render_template('home/index.html', segment='index', 
                            user_count=user_count, 
                            project_count=project_count, 
                            pipeline_count=pipeline_count, 
                            commit_count=commit_count, 
-                           pipeline_percentages=pipeline_percentages,  
+                           pipeline_percentages=pipeline_percentages,
+                           projects_details=projects_details,
                            API_URL=API_URL)
 
 
