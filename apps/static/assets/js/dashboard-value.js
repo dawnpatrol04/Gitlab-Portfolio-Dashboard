@@ -283,16 +283,8 @@ fetch(API_URL + '/pipelines/count-per-month/?start_month=2022-08')
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 5,
-                            fontSize: 14,
-                            fontStyle: 'bold',
-                            fontColor: '#444',
-                            padding: 5,
-                            usePointStyle: true
-                        }
-                    }
+                        display: false
+                    } 
                 },
                 scales: {
                     x: {
